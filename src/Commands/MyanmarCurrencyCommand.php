@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace MyanmarCurrency\MyanmarCurrency\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class MyanmarCurrencyCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'myanmar-currency';
 
     public $description = 'My command';
 
