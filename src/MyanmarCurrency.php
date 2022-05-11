@@ -2,6 +2,7 @@
 
 namespace MyanmarCurrency\MyanmarCurrency;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use MyanmarCurrency\MyanmarCurrency\Traits\ValidationTrait;
 
@@ -39,64 +40,95 @@ class MyanmarCurrency
             'ရှစ်' => '8',
             'ကိုး' => '9',
         ];
-        if ($number != 0) {
-            $amountNumber = (string)$number;
-            $result = $amountNumber;
+        $sar = [
+            'ကျပ်' => '4',
+            'ဆယ်' => '3',
+            'ရာ' => '2',
+            'ထောင်' => '1',
+            'သောင်း' => '0',
+        ];
+        $sarLak = [
+            'ကျပ်' => '5',
+            'ဆယ်' => '4',
+            'ရာ' => '3',
+            'ထောင်' => '2',
+            'သောင်း' => '1',
+            'သိန်း' => '0',
+        ];
+        $sarLakThan = [
+            'ကျပ်' => '6',
+            'ဆယ်' => '5',
+            'ရာ' => '4',
+            'ထောင်' => '3',
+            'သောင်း' => '2',
+            'သိန်း' => '1',
+//            'သန်း' => '0',
+        ];
+        $sarLast = [
+            'ကျပ်' => '7',
+            'ဆယ် ' => '6',
+            'ရာ' => '5',
+            'ထောင်' => '4',
+            'သောင်း' => '3',
+            'သိန်း' => '2',
+            'ဆယ်' => '1',
+//            'ကုုဋ' => '0',
+        ];
 
-            if (strlen($amountNumber) < 5): // for less then lah | no need to convert now
-                return $amountNumber;
-            elseif (strlen($amountNumber) === 5): // for less then lah | no need to convert now
-                $amountFirstNumber = array_search($amountNumber[0], $myanmarNumber);
-                if ($amountNumber[1] != 0):
-                    $amountSecondDigit = array_search($amountNumber[1], $myanmarNumber);
-                    return $amountFirstNumber . 'သောင်း' . $amountSecondDigit . 'ထောင်';
-                else:
-                    return $amountFirstNumber . 'သောင်း';
-                endif;
-            elseif (strlen($amountNumber) === 6): // for သိန္း
-                $amountFirstNumber = array_search($amountNumber[0], $myanmarNumber);
-                if ($amountNumber[1] != 0):
-                    $amountSecondDigit = array_search($amountNumber[1], $myanmarNumber);
+        $amountNumber = (string)$number;
+        $wordCount = strlen($amountNumber);
+        $condition = "";
+        if ($wordCount < 5) {// for less then lah | no need to convert now
+            return $amountNumber;
+        } elseif ($wordCount === 5) { // သောင်း
+            for ($x = 0; $x <= $wordCount - 1; $x++) {
+                if ($amountNumber[$x] != 0) {
+                    $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
+                    $dd = array_search($x, $sar);
+                    $condition .= $amountSecondDigit . $dd;
+                }
+            }
 
-                    $result = $amountFirstNumber . 'သိန်း' . $amountSecondDigit . 'သောင်း';
-                    if ($amountNumber[2] !== '0') {
-                        $amountThirdDigit = array_search($amountNumber[2], $myanmarNumber);
-                        $result .= $amountThirdDigit . 'ထောင်';
+            return $condition;
+        } elseif ($wordCount === 6) { // for သိန္း 1သိန်း
+            $condition = "";
+            for ($x = 0; $x <= $wordCount - 1; $x++) {
+                if ($amountNumber[$x] != 0) {
+                    $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
+                    $dd = array_search($x, $sarLak);
+                    $condition .= $amountSecondDigit . $dd;
+                }
+            }
+            return $condition;
+
+        } elseif ($wordCount === 7) { // for သန္း //၁၀သိန်း
+            for ($x = 0; $x <= $wordCount - 1; $x++) {
+                if ($amountNumber[$x] != 0) {
+                    $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
+                    $dd = array_search($x, $sarLakThan);
+                    if ($x == 0) {
+                        $condition .= "သိန်း" . $amountSecondDigit . "ဆယ်";
+                    } else {
+                        $condition .= $amountSecondDigit . $dd;
                     }
-                    return $result;
-                else:
-                    return $amountFirstNumber . 'သိန်း';
-                endif;
-
-            elseif (strlen($amountNumber) === 7): // for သန္း
-                $amountFirstNumber = array_search($amountNumber[0], $myanmarNumber);
-                if ($amountNumber[0] == '1' && $amountNumber[1] == '0'):
-                    return 'ဆယ်သိန်း';
-                endif;
-
-                if ($amountNumber[1] != 0):
-                    $myanmarNumber1 = array_search($amountNumber[1], $myanmarNumber);
-                    return $amountFirstNumber . 'ဆယ့်' . $myanmarNumber1 . 'သိန်း';
-                else:
-                    return 'သိန်း' . $amountFirstNumber . 'ဆယ်';
-                endif;
-            elseif (strlen($amountNumber) === 8): // for ကုုဋ
-                $amountFirstNumber = array_search($amountNumber[0], $myanmarNumber);
-                if ($amountNumber[0] == '1' && $amountNumber[1] == '0'):
-                    return 'သိန်းတစ်ရာ';
-                endif;
-
-                if ($amountNumber[1] != 0):
-                    $myanmarNumber1 = array_search($amountNumber[1], $myanmarNumber);
-                    return 'သိန်း' . $amountFirstNumber . 'ရာ' . $myanmarNumber1 . 'ဆယ့်';
-                else:
-                    return 'သိန်း' . $amountFirstNumber . 'ရာ';
-                endif;
-            else: // 100 သိန္း range. Don't calculate 101 or 155 for now. Let's just assume all will end in 0
-                return $amountNumber;
-            endif;
-        } else {
-            return $number;
+                }
+            }
+            return $condition;
+        } elseif ($wordCount === 8) { // for ကုုဋ
+            for ($x = 0; $x <= $wordCount - 1; $x++) {
+                if ($amountNumber[$x] != 0) {
+                    $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
+                    $dd = array_search($x, $sarLast);
+                    if ($x == 0) {
+                        $condition .= "သိန်း" . $amountSecondDigit . 'ရာ';
+                    } else {
+                        $condition .= $amountSecondDigit . $dd;
+                    }
+                }
+            }
+            return $condition;
+        } else { // 100 သိန္း range. Don't calculate 101 or 155 for now. Let's just assume all will end in 0
+            return $amountNumber;
         }
     }
 }
