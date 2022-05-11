@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @see \MyanmarCurrency\MyanmarCurrency\MyanmarCurrency
+ * * @method static string engNumberToMyanmarNumber($number)
  */
 class MyanmarCurrency extends Facade
 {
