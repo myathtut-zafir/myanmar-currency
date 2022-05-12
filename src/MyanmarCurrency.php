@@ -130,12 +130,11 @@ class MyanmarCurrency
             if ($amountNumber[2] == 0) {
                 $append = "ဆယ်";
             }
-            Log::info('dd',['append'=>$append]);
+
             for ($x = 0; $x <= $wordCount - 1; $x++) {
                 if ($amountNumber[$x] != 0) {
                     $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
                     $dd = array_search($x, $sarLast);
-                    Log::info('dd',['tt'=>$dd]);
                     if ($dd === "ဆယ့်" && $append !== "") {
                         $dd = $append;
                     }
