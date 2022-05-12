@@ -66,12 +66,12 @@ class MyanmarCurrency
         ];
         $sarLast = [
             'ကျပ်' => '7',
-            'ဆယ် ' => '6',
+            'ဆယ်' => '6',
             'ရာ' => '5',
             'ထောင်' => '4',
             'သောင်း' => '3',
             'သိန်း' => '2',
-            'ဆယ်' => '1',
+            'ဆယ့်' => '1',
 //            'ကုုဋ' => '0',
         ];
 
@@ -125,11 +125,20 @@ class MyanmarCurrency
                 }
             }
             return $condition;
-        } elseif ($wordCount === 8) { // for ကုုဋ
+        } elseif ($wordCount === 8) { // for ကုုဋ သိန်းရာ
+            $append = "";
+            if ($amountNumber[2] == 0) {
+                $append = "ဆယ်";
+            }
+            Log::info('dd',['append'=>$append]);
             for ($x = 0; $x <= $wordCount - 1; $x++) {
                 if ($amountNumber[$x] != 0) {
                     $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
                     $dd = array_search($x, $sarLast);
+                    Log::info('dd',['tt'=>$dd]);
+                    if ($dd === "ဆယ့်" && $append !== "") {
+                        $dd = $append;
+                    }
                     if ($x == 0) {
                         $condition .= "သိန်း" . $amountSecondDigit . 'ရာ';
                     } else {
