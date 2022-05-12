@@ -91,7 +91,6 @@ class MyanmarCurrency
 
             return $condition;
         } elseif ($wordCount === 6) { // for သိန္း 1သိန်း
-            $condition = "";
             for ($x = 0; $x <= $wordCount - 1; $x++) {
                 if ($amountNumber[$x] != 0) {
                     $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
@@ -102,12 +101,24 @@ class MyanmarCurrency
             return $condition;
 
         } elseif ($wordCount === 7) { // for သန္း //၁၀သိန်း
+            $append = "ဆယ့်";
+
+            if (preg_match("/^1[0 :-]++$/", $amountNumber)) //check start with number 1 and other are zero
+            {
+                return "ဆယ်သိန်း";
+            }
+
+            if (preg_match("/^.{1}[0 :-]++$/", $amountNumber)) //check start with number and other are zero
+            {
+                $append = "ဆယ်";
+            }
+
             for ($x = 0; $x <= $wordCount - 1; $x++) {
                 if ($amountNumber[$x] != 0) {
                     $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
                     $dd = array_search($x, $sarLakThan);
                     if ($x == 0) {
-                        $condition .= "သိန်း" . $amountSecondDigit . "ဆယ်";
+                        $condition .= "သိန်း" . $amountSecondDigit . $append;
                     } else {
                         $condition .= $amountSecondDigit . $dd;
                     }
