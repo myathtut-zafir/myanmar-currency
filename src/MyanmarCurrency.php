@@ -66,25 +66,23 @@ class MyanmarCurrency
         ];
         $sarLast = [
             'ကျပ်' => '7',
-            'ဆယ်' => '6',
+            'ဆယ် ' => '6',
             'ရာ ' => '5',
             'ထောင်' => '4',
             'သောင်း' => '3',
             'သိန်း' => '2',
-            'ဆယ့်' => '1',
-            'ရာ' => '1',
-//            'ကုုဋ' => '0',
+            'ဆယ်' => '1',
+            'ရာ' => '0',
         ];
         $sarLasts = [
             'ကျပ်' => '7',
             'ဆယ်' => '6',
-            'ရာ' => '5',
+            'ရာ့ ' => '5',
             'ထောင်' => '4',
             'သောင်း' => '3',
             'သိန်း' => '2',
             'ဆယ့်' => '1',
-            'ရာ့' => '1',
-//            'ကုုဋ' => '0',
+            'ရာ့' => '0',
         ];
         $sarHtaung = [
             'ကျပ်' => '8',
@@ -170,20 +168,26 @@ class MyanmarCurrency
             }
             return $condition;
         } elseif ($wordCount === 8) { // for ကုုဋ သိန်းရာ
-            $append = "";
-            if ($amountNumber[2] == 0) {
-                $append = "ဆယ်";
-            }
-
             for ($x = 0; $x <= $wordCount - 1; $x++) {
                 if ($amountNumber[$x] != 0) {
                     $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
-                    $currencySar = array_search($x, $sarLast);
-                    if ($currencySar === "ဆယ့်" && $append !== "") {
-                        $currencySar = $append;
+                    $nextIndex = $x;
+                    $nextIndex = $nextIndex + 1;
+
+                    if (isset($amountNumber[$nextIndex]) && $amountNumber[$nextIndex] != 0) {
+                        Log::info('dd', ['dd' => "test"]);
+                        $currencySar = array_search($x, $sarLasts);
+
+                    } else {
+                        $currencySar = array_search($x, $sarLast);
                     }
+                    Log::info('dd', ['dd' => $currencySar]);
+//                    $currencySar = array_search($x, $sarLast);
+//                    if ($currencySar === "ဆယ့်" && $append !== "") {
+//                        $currencySar = $append;
+//                    }
                     if ($x == 0) {
-                        $condition .= "သိန်း" . $amountSecondDigit . 'ရာ';
+                        $condition .= "သိန်း" . $amountSecondDigit . $currencySar;
                     } else {
                         $condition .= $amountSecondDigit . $currencySar;
                     }
