@@ -40,6 +40,36 @@ class MyanmarCurrency
             'ရှစ်' => '8',
             'ကိုး' => '9',
         ];
+        $sarSal = [
+            '1' => 'ကျပ်',
+            '0' => 'ဆယ်',
+        ];
+        $sarSals = [
+            '1' => 'ကျပ်',
+            '0' => 'ဆယ့်',
+        ];
+        $sarYar = [
+            '2' => 'ကျပ်',
+            '1' => 'ဆယ်',
+            '0' => 'ရာ',
+        ];
+        $sarYars = [
+            '2' => 'ကျပ်',
+            '1' => 'ဆယ့်',
+            '0' => 'ရာ့',
+        ];
+        $sarHtaung = [
+            '3' => 'ကျပ်',
+            '2' => 'ဆယ်',
+            '1' => 'ရာ',
+            '0' => 'ထောင်',
+        ];
+        $sarHtaungs = [
+            '3' => 'ကျပ်',
+            '2' => 'ဆယ့်',
+            '1' => 'ရာ့',
+            '0' => 'ထောင့်',
+        ];
         $sarThaung = [
             '4' => 'ကျပ်',
             '3' => 'ဆယ်',
@@ -71,7 +101,7 @@ class MyanmarCurrency
             '2' => 'သောင်း',
             '1' => 'သိန်း',
         ];
-        $sarYar = [
+        $sarTheinYar = [
             '7' => 'ကျပ်',
             '6' => 'ဆယ်',
             '5' => 'ရာ',
@@ -81,7 +111,7 @@ class MyanmarCurrency
             '1' => 'ဆယ်',
             '0' => 'ရာ',
         ];
-        $sarYars = [
+        $sarTheinYars = [
             '7' => 'ကျပ်',
             '6' => 'ဆယ့်',
             '5' => 'ရာ့',
@@ -91,7 +121,7 @@ class MyanmarCurrency
             '1' => 'ဆယ့်',
             '0' => 'ရာ့',
         ];
-        $sarHtaung = [
+        $sarTheinHtaung = [
             '8' => 'ကျပ်',
             '7' => 'ဆယ် ',
             '6' => 'ရာ ',
@@ -101,7 +131,7 @@ class MyanmarCurrency
             '2' => 'ဆယ်',
             '1' => 'ရာ',
         ];
-        $sarHtaungs = [
+        $sarTheinHtaungs = [
             '8' => 'ကျပ်',
             '7' => 'ဆယ့် ',
             '6' => 'ရာ့',
@@ -138,8 +168,61 @@ class MyanmarCurrency
         $amountNumber = (string)$number;
         $wordCount = strlen($amountNumber);
         $condition = "";
-        if ($wordCount < 5) {// for less then lah | no need to convert now
-            return $amountNumber;
+
+        if ($wordCount === 2) {
+            for ($x = 0; $x <= $wordCount - 1; $x++) {
+                if ($amountNumber[$x] != 0) {
+                    $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
+                    $nextIndex = $x;
+                    $nextIndex = $nextIndex + 1;
+
+                    if (isset($amountNumber[$nextIndex]) && $amountNumber[$nextIndex] != 0) {
+                        $currencySar = $sarSals[$x] ?? "";
+                    } else {
+                        $currencySar = $sarSal[$x] ?? "";
+                    }
+
+                    $condition .= $amountSecondDigit . $currencySar;
+                }
+            }
+
+            return $condition;
+        } elseif ($wordCount === 3) {
+            for ($x = 0; $x <= $wordCount - 1; $x++) {
+                if ($amountNumber[$x] != 0) {
+                    $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
+                    $nextIndex = $x;
+                    $nextIndex = $nextIndex + 1;
+
+                    if (isset($amountNumber[$nextIndex]) && $amountNumber[$nextIndex] != 0) {
+                        $currencySar = $sarYars[$x] ?? "";
+                    } else {
+                        $currencySar = $sarYar[$x] ?? "";
+                    }
+
+                    $condition .= $amountSecondDigit . $currencySar;
+                }
+            }
+
+            return $condition;
+        } elseif ($wordCount === 4) {
+            for ($x = 0; $x <= $wordCount - 1; $x++) {
+                if ($amountNumber[$x] != 0) {
+                    $amountSecondDigit = array_search($amountNumber[$x], $myanmarNumber);
+                    $nextIndex = $x;
+                    $nextIndex = $nextIndex + 1;
+
+                    if (isset($amountNumber[$nextIndex]) && $amountNumber[$nextIndex] != 0) {
+                        $currencySar = $sarHtaungs[$x] ?? "";
+                    } else {
+                        $currencySar = $sarHtaung[$x] ?? "";
+                    }
+
+                    $condition .= $amountSecondDigit . $currencySar;
+                }
+            }
+
+            return $condition;
         } elseif ($wordCount === 5) { // သောင်း
             for ($x = 0; $x <= $wordCount - 1; $x++) {
                 if ($amountNumber[$x] != 0) {
@@ -203,9 +286,9 @@ class MyanmarCurrency
                     $nextIndex = $nextIndex + 1;
 
                     if (isset($amountNumber[$nextIndex]) && $amountNumber[$nextIndex] != 0) {
-                        $currencySar = $sarYars[$x] ?? "";
+                        $currencySar = $sarTheinYars[$x] ?? "";
                     } else {
-                        $currencySar = $sarYar[$x] ?? "";
+                        $currencySar = $sarTheinYar[$x] ?? "";
                     }
 
                     if ($x == 0) {
@@ -225,9 +308,9 @@ class MyanmarCurrency
                     $nextIndex = $nextIndex + 1;
 
                     if (isset($amountNumber[$nextIndex]) && $amountNumber[$nextIndex] != 0) {
-                        $currencySar = $sarHtaungs[$x] ?? "";
+                        $currencySar = $sarTheinHtaungs[$x] ?? "";
                     } else {
-                        $currencySar = $sarHtaung[$x] ?? "";
+                        $currencySar = $sarTheinHtaung[$x] ?? "";
                     }
 
                     if ($x == 0) {
