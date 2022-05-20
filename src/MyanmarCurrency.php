@@ -30,6 +30,12 @@ class MyanmarCurrency
 
     function engNumberToMyanmarText($number)
     {
+        $validator = $this->getValidator($number);
+
+        if ($validator->fails()) {
+            return $this->showError($validator);
+        }
+
         $amountNumber = (string)$number;
         $wordCount = strlen($amountNumber);
 
@@ -64,13 +70,13 @@ class MyanmarCurrency
                     $currencySar = $this->myanmarSar($x, $amountNumber, $wordCount);
 
                     if ($x == 0) {
-                        $condition .= "သိန်း" . $amountSecondDigit . $append;
+                        $this->condition .= "သိန်း" . $amountSecondDigit . $append;
                     } else {
-                        $condition .= $amountSecondDigit . $currencySar;
+                        $this->condition .= $amountSecondDigit . $currencySar;
                     }
                 }
             }
-            return $condition;
+            return $this->condition;
         } elseif ($wordCount === 8) { // for ကုုဋ သိန်းရာ
             return $this->composeCondition($wordCount, $amountNumber, true);
         } elseif ($wordCount === 9) { // for ကုုဋ သိန်းထောင်
@@ -97,7 +103,7 @@ class MyanmarCurrency
     /**
      * @param int $wordCount
      * @param string $amountNumber
-     * @param string $condition
+     * @param bool $prepend
      * @return string
      */
     public function composeCondition(int $wordCount, string $amountNumber, bool $prepend = false): string
