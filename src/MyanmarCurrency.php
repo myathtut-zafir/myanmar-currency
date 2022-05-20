@@ -9,6 +9,8 @@ class MyanmarCurrency
 {
     use ValidationTrait, SarDataSetTrait;
 
+    protected string $condition = "";
+
     function engNumberToMyanmarNumber($number): string
     {
         $validator = $this->getValidator($number);
@@ -30,18 +32,17 @@ class MyanmarCurrency
     {
         $amountNumber = (string)$number;
         $wordCount = strlen($amountNumber);
-        $condition = "";
 
         if ($wordCount === 2) {
-            return $this->composeCondition($wordCount, $amountNumber, $condition);
+            return $this->composeCondition($wordCount, $amountNumber);
         } elseif ($wordCount === 3) {
-            return $this->composeCondition($wordCount, $amountNumber, $condition);
+            return $this->composeCondition($wordCount, $amountNumber);
         } elseif ($wordCount === 4) {
-            return $this->composeCondition($wordCount, $amountNumber, $condition);
+            return $this->composeCondition($wordCount, $amountNumber);
         } elseif ($wordCount === 5) { // သောင်း
-            return $this->composeCondition($wordCount, $amountNumber, $condition);
+            return $this->composeCondition($wordCount, $amountNumber);
         } elseif ($wordCount === 6) { // for သိန္း 1သိန်း
-            return $this->composeCondition($wordCount, $amountNumber, $condition);
+            return $this->composeCondition($wordCount, $amountNumber);
 
         } elseif ($wordCount === 7) { // for သန္း //၁၀သိန်း
             $append = "ဆယ့်";
@@ -71,11 +72,11 @@ class MyanmarCurrency
             }
             return $condition;
         } elseif ($wordCount === 8) { // for ကုုဋ သိန်းရာ
-            return $this->composeCondition($wordCount, $amountNumber, $condition, true);
+            return $this->composeCondition($wordCount, $amountNumber, true);
         } elseif ($wordCount === 9) { // for ကုုဋ သိန်းထောင်
-            return $this->composeCondition($wordCount, $amountNumber, $condition, true);
+            return $this->composeCondition($wordCount, $amountNumber, true);
         } elseif ($wordCount === 10) { // for ကုုဋ သိန်းသောင်း
-            return $this->composeCondition($wordCount, $amountNumber, $condition, true);
+            return $this->composeCondition($wordCount, $amountNumber, true);
         } else { // 100 သိန္း range. Don't calculate 101 or 155 for now. Let's just assume all will end in 0
             return $amountNumber;
         }
@@ -99,20 +100,20 @@ class MyanmarCurrency
      * @param string $condition
      * @return string
      */
-    public function composeCondition(int $wordCount, string $amountNumber, string $condition, bool $prepand = false): string
+    public function composeCondition(int $wordCount, string $amountNumber, bool $prepend = false): string
     {
         for ($x = 0; $x <= $wordCount - 1; $x++) {
             if ($amountNumber[$x] != 0) {
                 $amountSecondDigit = array_search($amountNumber[$x], $this->myanmarNumber());
                 $currencySar = $this->myanmarSar($x, $amountNumber, $wordCount);
 
-                if ($x == 0 && $prepand === true) {
-                    $condition .= "သိန်း" . $amountSecondDigit . $currencySar;
+                if ($x == 0 && $prepend === true) {
+                    $this->condition .= "သိန်း" . $amountSecondDigit . $currencySar;
                 } else {
-                    $condition .= $amountSecondDigit . $currencySar;
+                    $this->condition .= $amountSecondDigit . $currencySar;
                 }
             }
         }
-        return $condition;
+        return $this->condition;
     }
 }
