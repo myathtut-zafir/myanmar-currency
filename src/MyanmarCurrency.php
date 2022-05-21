@@ -29,20 +29,19 @@ class MyanmarCurrency
         return "";
     }
 
-    function engNumberToMyanmarText(int $number)
+    function engNumberToMyanmarText(int $number): int|string
     {
-        $amountNumber = (string)$number;
-        $wordCount = strlen($amountNumber);
+        $wordCount = strlen($number);
 
-        if ($wordCount == 7 && preg_match("/^1[0 :-]++$/", $amountNumber)) {
+        if ($wordCount == 7 && preg_match("/^1[0 :-]++$/", $number)) {
             return "ဆယ်သိန်း";
         }
 
         if ($wordCount >= 11) {
-            return $amountNumber;
+            return $number;
         }
 
-        return $this->composeCondition($wordCount, $amountNumber);
+        return $this->composeCondition($wordCount, $number);
 
     }
 
@@ -66,10 +65,7 @@ class MyanmarCurrency
      */
     public function composeCondition(int $wordCount, string $amountNumber): string
     {
-        $prepend = false;
-        if ($wordCount >= 7) {
-            $prepend = true;
-        }
+        $prepend = $this->isPrepend($wordCount);
 
         for ($x = 0; $x <= $wordCount - 1; $x++) {
             if ($amountNumber[$x] != 0) {
@@ -84,5 +80,18 @@ class MyanmarCurrency
             }
         }
         return $this->condition;
+    }
+
+    /**
+     * @param int $wordCount
+     * @return bool
+     */
+    public function isPrepend(int $wordCount): bool
+    {
+        $prepend = false;
+        if ($wordCount >= 7) {
+            $prepend = true;
+        }
+        return $prepend;
     }
 }
