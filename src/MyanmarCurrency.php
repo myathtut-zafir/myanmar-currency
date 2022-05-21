@@ -2,6 +2,7 @@
 
 namespace MyanmarCurrency\MyanmarCurrency;
 
+use Illuminate\Support\Facades\Log;
 use MyanmarCurrency\MyanmarCurrency\Traits\SarDataSetTrait;
 use MyanmarCurrency\MyanmarCurrency\Traits\ValidationTrait;
 
@@ -28,66 +29,24 @@ class MyanmarCurrency
         return "";
     }
 
-    function engNumberToMyanmarText($number)
+    function engNumberToMyanmarText(int $number)
     {
-        $validator = $this->getValidator($number);
-
-        if ($validator->fails()) {
-            return $this->showError($validator);
-        }
-
         $amountNumber = (string)$number;
         $wordCount = strlen($amountNumber);
 
-        if ($wordCount === 2) {
-            return $this->composeCondition($wordCount, $amountNumber);
-        } elseif ($wordCount === 3) {
-            return $this->composeCondition($wordCount, $amountNumber);
-        } elseif ($wordCount === 4) {
-            return $this->composeCondition($wordCount, $amountNumber);
-        } elseif ($wordCount === 5) { // သောင်း
-            return $this->composeCondition($wordCount, $amountNumber);
-        } elseif ($wordCount === 6) { // for သိန္း 1သိန်း
-            return $this->composeCondition($wordCount, $amountNumber);
+        if ($wordCount == 7 && preg_match("/^1[0 :-]++$/", $amountNumber)) {
+            return "ဆယ်သိန်း";
+        }
 
-        } elseif ($wordCount === 7) { // for သန္း //၁၀သိန်း
-            $append = "ဆယ့်";
-
-            if (preg_match("/^1[0 :-]++$/", $amountNumber)) //check start with number 1 and other are zero
-            {
-                return "ဆယ်သိန်း";
-            }
-
-            if (preg_match("/^.{1}[0 :-]++$/", $amountNumber)) //check start with number and other are zero
-            {
-                $append = "ဆယ်";
-            }
-
-            for ($x = 0; $x <= $wordCount - 1; $x++) {
-                if ($amountNumber[$x] != 0) {
-                    $amountSecondDigit = array_search($amountNumber[$x], $this->myanmarNumber());
-
-                    $currencySar = $this->myanmarSar($x, $amountNumber, $wordCount);
-
-                    if ($x == 0) {
-                        $this->condition .= "သိန်း" . $amountSecondDigit . $append;
-                    } else {
-                        $this->condition .= $amountSecondDigit . $currencySar;
-                    }
-                }
-            }
-            return $this->condition;
-        } elseif ($wordCount === 8) { // for ကုုဋ သိန်းရာ
-            return $this->composeCondition($wordCount, $amountNumber, true);
-        } elseif ($wordCount === 9) { // for ကုုဋ သိန်းထောင်
-            return $this->composeCondition($wordCount, $amountNumber, true);
-        } elseif ($wordCount === 10) { // for ကုုဋ သိန်းသောင်း
-            return $this->composeCondition($wordCount, $amountNumber, true);
-        } else { // 100 သိန္း range. Don't calculate 101 or 155 for now. Let's just assume all will end in 0
+        if ($wordCount >= 11) {
             return $amountNumber;
         }
+
+        return $this->composeCondition($wordCount, $amountNumber);
+
     }
 
+    //TODO need to chnage compose method
     function myanmarSar($x, $amountNumber, $wordCount)
     {
         $nextIndex = $x;
@@ -103,14 +62,18 @@ class MyanmarCurrency
     /**
      * @param int $wordCount
      * @param string $amountNumber
-     * @param bool $prepend
      * @return string
      */
-    public function composeCondition(int $wordCount, string $amountNumber, bool $prepend = false): string
+    public function composeCondition(int $wordCount, string $amountNumber): string
     {
+        $prepend = false;
+        if ($wordCount >= 7) {
+            $prepend = true;
+        }
+
         for ($x = 0; $x <= $wordCount - 1; $x++) {
             if ($amountNumber[$x] != 0) {
-                $amountSecondDigit = array_search($amountNumber[$x], $this->myanmarNumber());
+                $amountSecondDigit = array_search($amountNumber[$x], $this->myanmarNumber());// TODO should not use array_search
                 $currencySar = $this->myanmarSar($x, $amountNumber, $wordCount);
 
                 if ($x == 0 && $prepend === true) {
