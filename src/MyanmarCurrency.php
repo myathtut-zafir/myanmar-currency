@@ -45,12 +45,12 @@ class MyanmarCurrency
 
     }
 
-    //TODO need to chnage compose method
-    function myanmarSar($x, $amountNumber, $wordCount)
+    //compose myanmar currency word. eg "သိန်း,သောင်း,etc"
+    function myanmarCurrencyWord($x, $amountNumber, $wordCount)
     {
         $nextIndex = $x;
         $nextIndex = $nextIndex + 1;
-        $methodName = $this->helper($wordCount);
+        $methodName = $this->methodNamesHelper($wordCount);
 
         if (isset($amountNumber[$nextIndex]) && $amountNumber[$nextIndex] != 0) {
             return $this->{$methodName[1]}($x);
@@ -69,8 +69,8 @@ class MyanmarCurrency
 
         for ($x = 0; $x <= $wordCount - 1; $x++) {
             if ($amountNumber[$x] != 0) {
-                $amountSecondDigit = array_search($amountNumber[$x], $this->myanmarNumber());// TODO should not use array_search
-                $currencySar = $this->myanmarSar($x, $amountNumber, $wordCount);
+                $amountSecondDigit = $this->myanmarNumber($amountNumber[$x]);
+                $currencySar = $this->myanmarCurrencyWord($x, $amountNumber, $wordCount);
 
                 if ($x == 0 && $prepend === true) {
                     $this->condition .= "သိန်း" . $amountSecondDigit . $currencySar;

@@ -5,124 +5,127 @@ namespace MyanmarCurrency\MyanmarCurrency\Traits;
 trait SarDataSetTrait
 {
 
-    public function helper($count)
+    protected array $myanmarNumber = [
+        '1' => 'တစ်',
+        '2' => 'နှစ်',
+        '3' => 'သုံး',
+        '4' => 'လေး',
+        '5' => 'ငါး',
+        '6' => 'ခြောက်',
+        '7' => 'ခုနစ်',
+        '8' => 'ရှစ်',
+        '9' => 'ကိုး',
+    ];
+    protected array $methodsNames = [
+        '2' => ['sarSal', 'sarSals'],
+        '3' => ['sarYar', 'sarYars'],
+        '4' => ['sarHtaung', 'sarHtaungs'],
+        '5' => ['sarThaung', 'sarThaungs'],
+        '6' => ['sarLak', 'sarLaks'],
+        '7' => ['sarLakThan', 'sarLakThans'],
+        '8' => ['sarTheinYar', 'sarTheinYars'],
+        '9' => ['sarTheinHtaung', 'sarTheinHtaungs'],
+        '10' => ['sarTheinThaung', 'sarTheinThaungs'],
+    ];
+
+
+    public function methodNamesHelper($count)
     {
-        $data = [
-            '2' => ['sarSal', 'sarSals'],
-            '3' => ['sarYar', 'sarYars'],
-            '4' => ['sarHtaung', 'sarHtaungs'],
-            '5' => ['sarThaung', 'sarThaungs'],
-            '6' => ['sarLak', 'sarLaks'],
-            '7' => ['sarLakThan', 'sarLakThans'],
-            '8' => ['sarTheinYar', 'sarTheinYars'],
-            '9' => ['sarTheinHtaung', 'sarTheinHtaungs'],
-            '10' => ['sarTheinThaung', 'sarTheinThaungs'],
-        ];
-        return $data[$count] ?? "";
+        return $this->methodsNames[$count] ?? "";
     }
 
-    protected function myanmarNumber(): array
+    protected function myanmarNumber($index): string
     {
-        return [
-            'တစ်' => '1',
-            'နှစ်' => '2',
-            'သုံး' => '3',
-            'လေး' => '4',
-            'ငါး' => '5',
-            'ခြောက်' => '6',
-            'ခုနစ်' => '7',
-            'ရှစ်' => '8',
-            'ကိုး' => '9',
-        ];
+        return $this->myanmarNumber[$index] ?? "";
     }
 
     public function sarSal($x): string
     {
-        $data = [
+        $twoDigitNumber = [
             '1' => 'ကျပ်',
             '0' => 'ဆယ်',
         ];
-        return $data[$x] ?? "";
+        return $twoDigitNumber[$x] ?? "";
     }
 
     public function sarSals($x): string
     {
-        $data = [
+        $twoDigitNumberWithOf = [
             '1' => 'ကျပ်',
             '0' => 'ဆယ့်',
         ];
-        return $data[$x] ?? "";
+        return $twoDigitNumberWithOf[$x] ?? "";
     }
 
     protected function sarYar($x): string
     {
-        $data = [
+        $threeDigitNumber = [
             '2' => 'ကျပ်',
             '1' => 'ဆယ်',
             '0' => 'ရာ',
         ];
-        return $data[$x] ?? "";
+        return $threeDigitNumber[$x] ?? "";
     }
 
     protected function sarYars($x): string
     {
-        $data = [
+        $threeDigitNumberWithOf = [
             '2' => 'ကျပ်',
             '1' => 'ဆယ့်',
             '0' => 'ရာ',
         ];
-        return $data[$x] ?? "";
+        return $threeDigitNumberWithOf[$x] ?? "";
     }
 
     protected function sarHtaung($x): string
     {
-        $data = [
+        $fourDigitNumber = [
             '3' => 'ကျပ်',
             '2' => 'ဆယ်',
             '1' => 'ရာ',
             '0' => 'ထောင်',
         ];
-        return $data[$x] ?? "";
+        return $fourDigitNumber[$x] ?? "";
     }
 
     protected function sarHtaungs($x): string
     {
-        $data = [
+        $fourDigitNumberWithOf = [
             '3' => 'ကျပ်',
             '2' => 'ဆယ့်',
             '1' => 'ရာ့',
             '0' => 'ထောင့်',
         ];
-        return $data[$x] ?? "";
+        return $fourDigitNumberWithOf[$x] ?? "";
     }
 
     protected function sarThaung($x): string
     {
-        $data = [
+        $fiveDigitNumber = [
             '4' => 'ကျပ်',
             '3' => 'ဆယ်',
             '2' => 'ရာ',
             '1' => 'ထောင်',
             '0' => 'သောင်း',
         ];
-        return $data[$x] ?? "";
+        return $fiveDigitNumber[$x] ?? "";
     }
 
     protected function sarThaungs($x): string
     {
-        $data = [
+        $fiveDigitNumberWithOf = [
             '4' => 'ကျပ်',
             '3' => 'ဆယ်',
             '2' => 'ရာ့',
             '1' => 'ထောင့်',
             '0' => 'သောင်း',
         ];
-        return $data[$x] ?? "";
+        return $fiveDigitNumberWithOf[$x] ?? "";
     }
 
     protected function sarLak($x): string
     {
-        $data = [
+        $sixDigitNumber = [
             '5' => 'ကျပ်',
             '4' => 'ဆယ်',
             '3' => 'ရာ',
@@ -130,12 +133,12 @@ trait SarDataSetTrait
             '1' => 'သောင်း',
             '0' => 'သိန်း',
         ];
-        return $data[$x] ?? "";
+        return $sixDigitNumber[$x] ?? "";
     }
 
     protected function sarLaks($x): string
     {
-        $data = [
+        $sixDigitNumberWithOf = [
             '5' => 'ကျပ်',
             '4' => 'ဆယ့်',
             '3' => 'ရာ့',
@@ -143,12 +146,12 @@ trait SarDataSetTrait
             '1' => 'သောင်း',
             '0' => 'သိန်း',
         ];
-        return $data[$x] ?? "";
+        return $sixDigitNumberWithOf[$x] ?? "";
     }
 
     protected function sarLakThan($x): string
     {
-        $data = [
+        $sevenDigitNumber = [
             '6' => 'ကျပ်',
             '5' => 'ဆယ်',
             '4' => 'ရာ',
@@ -157,12 +160,12 @@ trait SarDataSetTrait
             '1' => 'သိန်း',
             '0' => 'ဆယ်',
         ];
-        return $data[$x] ?? "";
+        return $sevenDigitNumber[$x] ?? "";
     }
 
     protected function sarLakThans($x): string
     {
-        $data = [
+        $sevenDigitNumberWithOf = [
             '6' => 'ကျပ်',
             '5' => 'ဆယ့်',
             '4' => 'ရာ့',
@@ -171,12 +174,12 @@ trait SarDataSetTrait
             '1' => 'သိန်း',
             '0' => 'ဆယ့်',
         ];
-        return $data[$x] ?? "";
+        return $sevenDigitNumberWithOf[$x] ?? "";
     }
 
     protected function sarTheinYar($x): string
     {
-        $data = [
+        $eightDigitNumber = [
             '7' => 'ကျပ်',
             '6' => 'ဆယ်',
             '5' => 'ရာ',
@@ -186,12 +189,12 @@ trait SarDataSetTrait
             '1' => 'ဆယ်',
             '0' => 'ရာ',
         ];
-        return $data[$x] ?? "";
+        return $eightDigitNumber[$x] ?? "";
     }
 
     protected function sarTheinYars($x): string
     {
-        $data = [
+        $eightDigitNumberWithOf = [
             '7' => 'ကျပ်',
             '6' => 'ဆယ့်',
             '5' => 'ရာ့',
@@ -201,12 +204,12 @@ trait SarDataSetTrait
             '1' => 'ဆယ့်',
             '0' => 'ရာ့',
         ];
-        return $data[$x] ?? "";
+        return $eightDigitNumberWithOf[$x] ?? "";
     }
 
     protected function sarTheinHtaung($x): string
     {
-        $data = [
+        $nineDigitNumber = [
             '8' => 'ကျပ်',
             '7' => 'ဆယ် ',
             '6' => 'ရာ ',
@@ -217,12 +220,12 @@ trait SarDataSetTrait
             '1' => 'ရာ',
             '0' => 'ထောင်',
         ];
-        return $data[$x] ?? "";
+        return $nineDigitNumber[$x] ?? "";
     }
 
     protected function sarTheinHtaungs($x): string
     {
-        $data = [
+        $nineDigitNumberWithOf = [
             '8' => 'ကျပ်',
             '7' => 'ဆယ့် ',
             '6' => 'ရာ့',
@@ -233,12 +236,12 @@ trait SarDataSetTrait
             '1' => 'ရာ့',
             '0' => 'ထောင့်',
         ];
-        return $data[$x] ?? "";
+        return $nineDigitNumberWithOf[$x] ?? "";
     }
 
     protected function sarTheinThaung($x): string
     {
-        $data = [
+        $tenDigitNumber = [
             '9' => 'ကျပ်',
             '8' => 'ဆယ်',
             '7' => 'ရာ',
@@ -250,12 +253,12 @@ trait SarDataSetTrait
             '1' => 'ထောင်',
             '0' => 'သောင်း',
         ];
-        return $data[$x] ?? "";
+        return $tenDigitNumber[$x] ?? "";
     }
 
     protected function sarTheinThaungs($x): string
     {
-        $data = [
+        $tenDigitNumberWithOf = [
             '9' => 'ကျပ်',
             '8' => 'ဆယ့်',
             '7' => 'ရာ့',
@@ -267,7 +270,7 @@ trait SarDataSetTrait
             '1' => 'ထောင့်',
             '0' => 'သောင်း',
         ];
-        return $data[$x] ?? "";
+        return $tenDigitNumberWithOf[$x] ?? "";
     }
 
 }
