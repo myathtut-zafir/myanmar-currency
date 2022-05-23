@@ -14,11 +14,6 @@ class MyanmarCurrency
 
     function engNumberToMyanmarNumber($number): string
     {
-        $validator = $this->getValidator($number);
-
-        if ($validator->fails()) {
-            return $this->showError($validator);
-        }
 
         $engNumber = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
@@ -29,8 +24,10 @@ class MyanmarCurrency
         return "";
     }
 
-    function engNumberToMyanmarText(int $number): int|string
+    function engNumberToMyanmarText($number): int|string
     {
+        $this->checklValidation($number); //check validation
+
         $wordCount = strlen($number);
 
         if ($wordCount == 7 && preg_match("/^1[0 :-]++$/", $number)) {
@@ -41,7 +38,7 @@ class MyanmarCurrency
             return $number;
         }
 
-        return $this->composeCondition($wordCount, $number);
+        return $this->completeWord($wordCount, $number);
 
     }
 
@@ -63,7 +60,7 @@ class MyanmarCurrency
      * @param string $amountNumber
      * @return string
      */
-    public function composeCondition(int $wordCount, string $amountNumber): string
+    public function completeWord(int $wordCount, string $amountNumber): string
     {
         $prepend = $this->isPrepend($wordCount);
 

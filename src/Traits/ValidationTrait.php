@@ -4,21 +4,23 @@ namespace MyanmarCurrency\MyanmarCurrency\Traits;
 
 
 use Illuminate\Support\Facades\Validator;
+use InvalidArgumentException;
 
 trait ValidationTrait
 {
 
-    /**
-     * @param $number
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    public function getValidator($number): \Illuminate\Contracts\Validation\Validator
+
+    public function checklValidation($number)
     {
-        return Validator::make([
-            'number' => $number,
-        ], [
-            'number' => ['numeric'],
-        ]);
+        $number_validation_regex = "/^(?:-(?:[1-9](?:\\d{0,2}(?:,\\d{3})+|\\d*))|(?:0|(?:[1-9](?:\\d{0,2}(?:,\\d{3})+|\\d*))))(?:.\\d+|)$/";
+        if (preg_replace($number_validation_regex, '', $number)) {
+            throw new InvalidArgumentException("Please type number only!");
+        }
+
+        if (preg_match("/[^0-9]/", $number)) {
+
+            throw new InvalidArgumentException("Please type number only!");
+        }
     }
 
     /**
