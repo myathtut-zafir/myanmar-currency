@@ -8,10 +8,11 @@ use MyanmarCurrency\MyanmarCurrency\MyanmarCurrencyServiceProvider;
 
 class TestCase extends Orchestra
 {
+    protected $currency;
     protected function setUp(): void
     {
         parent::setUp();
-
+        $this->currency = new \MyanmarCurrency\MyanmarCurrency\MyanmarCurrency();
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'MyanmarCurrency\\MyanmarCurrency\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
