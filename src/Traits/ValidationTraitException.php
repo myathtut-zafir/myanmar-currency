@@ -2,15 +2,13 @@
 
 namespace MyanmarCurrency\MyanmarCurrency\Traits;
 
-
-use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
 
-trait ValidationTrait
+trait ValidationTraitException
 {
 
 
-    public function checklValidation($number)
+    public function checkValidationException($number)
     {
         $number_validation_regex = "/^(?:-(?:[1-9](?:\\d{0,2}(?:,\\d{3})+|\\d*))|(?:0|(?:[1-9](?:\\d{0,2}(?:,\\d{3})+|\\d*))))(?:.\\d+|)$/";
         if (preg_replace($number_validation_regex, '', $number)) {
@@ -21,15 +19,9 @@ trait ValidationTrait
 
             throw new InvalidArgumentException("Please type number only!");
         }
-    }
+        if (preg_match("/^(?:0|00)\d+$/", $number)) {
 
-    /**
-     * @param \Illuminate\Contracts\Validation\Validator $validator
-     * @return mixed
-     */
-    public function showError(\Illuminate\Contracts\Validation\Validator $validator): mixed
-    {
-        $data = $validator->errors()->all();
-        return $data[0];
+            throw new InvalidArgumentException("Number should not start with 0");
+        }
     }
 }
