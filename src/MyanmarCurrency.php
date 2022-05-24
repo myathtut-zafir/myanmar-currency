@@ -13,6 +13,7 @@ class MyanmarCurrency
 
     function engNumberToMyanmarNumber($number): string
     {
+        $this->checkValidationException($number); //check validation
 
         $engNumber = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
@@ -23,7 +24,7 @@ class MyanmarCurrency
         return "";
     }
 
-    function engNumberToMyanmarText($number): int|string
+    function convertMyanmarText($number): int|string
     {
         $this->checkValidationException($number); //check validation
 
