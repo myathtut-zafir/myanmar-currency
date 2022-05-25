@@ -7,7 +7,7 @@
 
 ## Myanmar Sar Currency
 
-This is a laravel library for showing myanmar kyat number to myanmar sar number.
+This is a laravel library for convert myanmar kyats number to myanmar sar number.
 (eg."1000=>တစ်ထောင်")
 
 ## Installation
@@ -22,9 +22,13 @@ The package will automatically register itself.
 
 ## Usage
 
+Import namespace.
+
 ```php
 use MyanmarCurrency\MyanmarCurrency\Facades\MyanmarCurrency;
+```
 
+```php
 # returns 'တစ်ထောင်'
 return MyanmarCurrency::convertMyanmarText("1000");
 
