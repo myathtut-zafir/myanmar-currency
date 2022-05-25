@@ -4,8 +4,8 @@ namespace MyanmarCurrency\MyanmarCurrency\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use MyanmarCurrency\MyanmarCurrency\MyanmarCurrency;
-use Orchestra\Testbench\TestCase as Orchestra;
 use MyanmarCurrency\MyanmarCurrency\MyanmarCurrencyServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
@@ -16,7 +16,7 @@ class TestCase extends Orchestra
         parent::setUp();
         $this->currency = new MyanmarCurrency();
         Factory::guessFactoryNamesUsing(
-            fn(string $modelName) => 'MyanmarCurrency\\MyanmarCurrency\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
+            fn (string $modelName) => 'MyanmarCurrency\\MyanmarCurrency\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 

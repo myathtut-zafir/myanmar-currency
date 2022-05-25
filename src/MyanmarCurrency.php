@@ -7,9 +7,10 @@ use MyanmarCurrency\MyanmarCurrency\Traits\ValidationTraitException;
 
 class MyanmarCurrency
 {
-    use ValidationTraitException, HelperTrait;
+    use ValidationTraitException;
+    use HelperTrait;
 
-    function convertMyanmarText($number): int|string
+    public function convertMyanmarText($number): int|string
     {
         $this->checkValidationException($number); //check validation
 
@@ -24,6 +25,5 @@ class MyanmarCurrency
         }
 
         return $this->completeWord($wordCount, $number);
-
     }
 }
