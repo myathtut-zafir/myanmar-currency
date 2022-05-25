@@ -23,6 +23,4 @@ class MyanmarCurrencyServiceProvider extends PackageServiceProvider
             return new MyanmarCurrency();
         });
     }
-
-
 }

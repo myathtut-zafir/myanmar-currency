@@ -4,7 +4,6 @@ namespace MyanmarCurrency\MyanmarCurrency\Traits;
 
 trait SarDataSetTrait
 {
-
     protected array $myanmarNumber = [
         '1' => 'တစ်',
         '2' => 'နှစ်',
@@ -28,7 +27,6 @@ trait SarDataSetTrait
         '10' => ['tenDigitNumber', 'tenDigitNumbers'],
     ];
 
-
     public function methodNamesHelper($count)
     {
         return $this->methodsNames[$count] ?? "";
@@ -45,6 +43,7 @@ trait SarDataSetTrait
             '1' => 'ကျပ်',
             '0' => 'ဆယ်',
         ];
+
         return $twoDigitNumber[$x] ?? "";
     }
 
@@ -54,6 +53,7 @@ trait SarDataSetTrait
             '1' => 'ကျပ်',
             '0' => 'ဆယ့်',
         ];
+
         return $twoDigitNumberWithOf[$x] ?? "";
     }
 
@@ -64,6 +64,7 @@ trait SarDataSetTrait
             '1' => 'ဆယ်',
             '0' => 'ရာ',
         ];
+
         return $threeDigitNumber[$x] ?? "";
     }
 
@@ -74,6 +75,7 @@ trait SarDataSetTrait
             '1' => 'ဆယ့်',
             '0' => 'ရာ',
         ];
+
         return $threeDigitNumberWithOf[$x] ?? "";
     }
 
@@ -85,6 +87,7 @@ trait SarDataSetTrait
             '1' => 'ရာ',
             '0' => 'ထောင်',
         ];
+
         return $fourDigitNumber[$x] ?? "";
     }
 
@@ -96,6 +99,7 @@ trait SarDataSetTrait
             '1' => 'ရာ့',
             '0' => 'ထောင့်',
         ];
+
         return $fourDigitNumberWithOf[$x] ?? "";
     }
 
@@ -108,6 +112,7 @@ trait SarDataSetTrait
             '1' => 'ထောင်',
             '0' => 'သောင်း',
         ];
+
         return $fiveDigitNumber[$x] ?? "";
     }
 
@@ -120,6 +125,7 @@ trait SarDataSetTrait
             '1' => 'ထောင့်',
             '0' => 'သောင်း',
         ];
+
         return $fiveDigitNumberWithOf[$x] ?? "";
     }
 
@@ -133,6 +139,7 @@ trait SarDataSetTrait
             '1' => 'သောင်း',
             '0' => 'သိန်း',
         ];
+
         return $sixDigitNumber[$x] ?? "";
     }
 
@@ -146,6 +153,7 @@ trait SarDataSetTrait
             '1' => 'သောင်း',
             '0' => 'သိန်း',
         ];
+
         return $sixDigitNumberWithOf[$x] ?? "";
     }
 
@@ -160,6 +168,7 @@ trait SarDataSetTrait
             '1' => 'သိန်း',
             '0' => 'ဆယ်',
         ];
+
         return $sevenDigitNumber[$x] ?? "";
     }
 
@@ -174,6 +183,7 @@ trait SarDataSetTrait
             '1' => 'သိန်း',
             '0' => 'ဆယ့်',
         ];
+
         return $sevenDigitNumberWithOf[$x] ?? "";
     }
 
@@ -189,6 +199,7 @@ trait SarDataSetTrait
             '1' => 'ဆယ်',
             '0' => 'ရာ',
         ];
+
         return $eightDigitNumber[$x] ?? "";
     }
 
@@ -204,6 +215,7 @@ trait SarDataSetTrait
             '1' => 'ဆယ့်',
             '0' => 'ရာ့',
         ];
+
         return $eightDigitNumberWithOf[$x] ?? "";
     }
 
@@ -220,6 +232,7 @@ trait SarDataSetTrait
             '1' => 'ရာ',
             '0' => 'ထောင်',
         ];
+
         return $nineDigitNumber[$x] ?? "";
     }
 
@@ -236,6 +249,7 @@ trait SarDataSetTrait
             '1' => 'ရာ့',
             '0' => 'ထောင့်',
         ];
+
         return $nineDigitNumberWithOf[$x] ?? "";
     }
 
@@ -253,6 +267,7 @@ trait SarDataSetTrait
             '1' => 'ထောင်',
             '0' => 'သောင်း',
         ];
+
         return $tenDigitNumber[$x] ?? "";
     }
 
@@ -270,7 +285,7 @@ trait SarDataSetTrait
             '1' => 'ထောင့်',
             '0' => 'သောင်း',
         ];
+
         return $tenDigitNumberWithOf[$x] ?? "";
     }
-
 }

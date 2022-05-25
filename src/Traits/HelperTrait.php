@@ -18,6 +18,7 @@ trait HelperTrait
         if (isset($amountNumber[$nextIndex]) && $amountNumber[$nextIndex] != 0) {
             return $this->{$methodName[1]}($x);
         }
+
         return $this->{$methodName[0]}($x);
     }
 
@@ -42,6 +43,7 @@ trait HelperTrait
                 }
             }
         }
+
         return $this->completeSentence;
     }
 
@@ -51,10 +53,10 @@ trait HelperTrait
      */
     public function isPrepend(int $wordCount): bool
     {
-
         if ($wordCount >= 7) {
             return true;
         }
+
         return false;
     }
 }
