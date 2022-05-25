@@ -1,12 +1,12 @@
 {
-    "name": "myanmar-currency/myanmar-currency",
+    "name": "ageekdev/myanmar-currency",
     "description": "This is my package myanmar-currency",
     "keywords": [
         "myanmar-currency",
         "laravel",
         "myanmar-currency"
     ],
-    "homepage": "https://github.com/myanmar-currency/myanmar-currency",
+    "homepage": "https://github.com/ageekdev/myanmar-currency",
     "license": "MIT",
     "authors": [
         {
@@ -34,13 +34,12 @@
     },
     "autoload": {
         "psr-4": {
-            "MyanmarCurrency\\MyanmarCurrency\\": "src",
-            "MyanmarCurrency\\MyanmarCurrency\\Database\\Factories\\": "database/factories"
+            "AgeekDev\\MyanmarCurrency\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MyanmarCurrency\\MyanmarCurrency\\Tests\\": "tests"
+            "AgeekDev\\MyanmarCurrency\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -58,10 +57,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "MyanmarCurrency\\MyanmarCurrency\\MyanmarCurrencyServiceProvider"
+                "AgeekDev\\MyanmarCurrency\\MyanmarCurrencyServiceProvider"
             ],
             "aliases": {
-                "MyanmarCurrency": "MyanmarCurrency\\MyanmarCurrency\\Facades\\MyanmarCurrency"
+                "MyanmarCurrency": "AgeekDev\\MyanmarCurrency\\Facades\\MyanmarCurrency"
             }
         }
     },

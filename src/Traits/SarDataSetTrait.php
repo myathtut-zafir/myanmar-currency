@@ -1,6 +1,6 @@
 <?php
 
-namespace MyanmarCurrency\MyanmarCurrency\Traits;
+namespace AgeekDev\MyanmarCurrency\Traits;
 
 trait SarDataSetTrait
 {

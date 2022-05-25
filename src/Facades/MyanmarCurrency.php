@@ -1,6 +1,6 @@
 <?php
 
-namespace MyanmarCurrency\MyanmarCurrency\Facades;
+namespace AgeekDev\MyanmarCurrency\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

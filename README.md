@@ -25,7 +25,7 @@ The package will automatically register itself.
 Import namespace.
 
 ```php
-use MyanmarCurrency\MyanmarCurrency\Facades\MyanmarCurrency;
+use AgeekDev\MyanmarCurrency\Facades\MyanmarCurrency;
 ```
 
 ```php

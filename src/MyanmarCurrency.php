@@ -1,9 +1,9 @@
 <?php
 
-namespace MyanmarCurrency\MyanmarCurrency;
+namespace AgeekDev\MyanmarCurrency;
 
-use MyanmarCurrency\MyanmarCurrency\Traits\HelperTrait;
-use MyanmarCurrency\MyanmarCurrency\Traits\ValidationTraitException;
+use AgeekDev\MyanmarCurrency\Traits\HelperTrait;
+use AgeekDev\MyanmarCurrency\Traits\ValidationTraitException;
 
 class MyanmarCurrency
 {

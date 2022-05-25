@@ -1,10 +1,10 @@
 <?php
 
-namespace MyanmarCurrency\MyanmarCurrency\Tests;
+namespace AgeekDev\MyanmarCurrency\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use MyanmarCurrency\MyanmarCurrency\MyanmarCurrency;
-use MyanmarCurrency\MyanmarCurrency\MyanmarCurrencyServiceProvider;
+use AgeekDev\MyanmarCurrency\MyanmarCurrency;
+use AgeekDev\MyanmarCurrency\MyanmarCurrencyServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
