@@ -14,9 +14,7 @@ class MyanmarCurrencyServiceProvider extends PackageServiceProvider
          *
          * More info: https://github.com/spatie/laravel-package-tools
          */
-        $package
-            ->name('myanmar-currency')
-            ->hasConfigFile();
+        $package->name('myanmar-currency');
     }
 
     public function bootingPackage()
