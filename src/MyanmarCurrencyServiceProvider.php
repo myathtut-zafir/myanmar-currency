@@ -4,7 +4,6 @@ namespace MyanmarCurrency\MyanmarCurrency;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use MyanmarCurrency\MyanmarCurrency\Commands\MyanmarCurrencyCommand;
 
 class MyanmarCurrencyServiceProvider extends PackageServiceProvider
 {
@@ -17,11 +16,7 @@ class MyanmarCurrencyServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('myanmar-currency')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_myanmar-currency_table')
-            ->hasCommand(MyanmarCurrencyCommand::class);
-
+            ->hasConfigFile();
     }
 
     public function bootingPackage()

@@ -9,21 +9,6 @@ class MyanmarCurrency
 {
     use ValidationTraitException, HelperTrait;
 
-    protected string $condition = "";
-
-    function engNumberToMyanmarNumber($number): string
-    {
-        $this->checkValidationException($number); //check validation
-
-        $engNumber = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-
-        $myanmarNumber = ['၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉', '၀'];
-        if ($number != "" && $number != null) {
-            return str_replace($engNumber, $myanmarNumber, $number);
-        }
-        return "";
-    }
-
     function convertMyanmarText($number): int|string
     {
         $this->checkValidationException($number); //check validation

@@ -17,15 +17,15 @@ trait SarDataSetTrait
         '9' => 'ကိုး',
     ];
     protected array $methodsNames = [
-        '2' => ['sarSal', 'sarSals'],
-        '3' => ['sarYar', 'sarYars'],
-        '4' => ['sarHtaung', 'sarHtaungs'],
-        '5' => ['sarThaung', 'sarThaungs'],
-        '6' => ['sarLak', 'sarLaks'],
-        '7' => ['sarLakThan', 'sarLakThans'],
-        '8' => ['sarTheinYar', 'sarTheinYars'],
-        '9' => ['sarTheinHtaung', 'sarTheinHtaungs'],
-        '10' => ['sarTheinThaung', 'sarTheinThaungs'],
+        '2' => ['twoDigitNumber', 'twoDigitNumbers'],
+        '3' => ['threeDigitNumber', 'threeDigitNumbers'],
+        '4' => ['fourDigitNumber', 'fourDigitNumbers'],
+        '5' => ['fiveDigitNumber', 'fiveDigitNumbers'],
+        '6' => ['sixDigitNumber', 'sixDigitNumbers'],
+        '7' => ['sevenDigitNumber', 'sevenDigitNumbers'],
+        '8' => ['eightDigitNumber', 'eightDigitNumbers'],
+        '9' => ['nineDigitNumber', 'nineDigitNumbers'],
+        '10' => ['tenDigitNumber', 'tenDigitNumbers'],
     ];
 
 
@@ -39,7 +39,7 @@ trait SarDataSetTrait
         return $this->myanmarNumber[$index] ?? "";
     }
 
-    public function sarSal($x): string
+    public function twoDigitNumber($x): string
     {
         $twoDigitNumber = [
             '1' => 'ကျပ်',
@@ -48,7 +48,7 @@ trait SarDataSetTrait
         return $twoDigitNumber[$x] ?? "";
     }
 
-    public function sarSals($x): string
+    public function twoDigitNumbers($x): string
     {
         $twoDigitNumberWithOf = [
             '1' => 'ကျပ်',
@@ -57,7 +57,7 @@ trait SarDataSetTrait
         return $twoDigitNumberWithOf[$x] ?? "";
     }
 
-    protected function sarYar($x): string
+    protected function threeDigitNumber($x): string
     {
         $threeDigitNumber = [
             '2' => 'ကျပ်',
@@ -67,7 +67,7 @@ trait SarDataSetTrait
         return $threeDigitNumber[$x] ?? "";
     }
 
-    protected function sarYars($x): string
+    protected function threeDigitNumbers($x): string
     {
         $threeDigitNumberWithOf = [
             '2' => 'ကျပ်',
@@ -77,7 +77,7 @@ trait SarDataSetTrait
         return $threeDigitNumberWithOf[$x] ?? "";
     }
 
-    protected function sarHtaung($x): string
+    protected function fourDigitNumber($x): string
     {
         $fourDigitNumber = [
             '3' => 'ကျပ်',
@@ -88,7 +88,7 @@ trait SarDataSetTrait
         return $fourDigitNumber[$x] ?? "";
     }
 
-    protected function sarHtaungs($x): string
+    protected function fourDigitNumbers($x): string
     {
         $fourDigitNumberWithOf = [
             '3' => 'ကျပ်',
@@ -99,7 +99,7 @@ trait SarDataSetTrait
         return $fourDigitNumberWithOf[$x] ?? "";
     }
 
-    protected function sarThaung($x): string
+    protected function fiveDigitNumber($x): string
     {
         $fiveDigitNumber = [
             '4' => 'ကျပ်',
@@ -111,7 +111,7 @@ trait SarDataSetTrait
         return $fiveDigitNumber[$x] ?? "";
     }
 
-    protected function sarThaungs($x): string
+    protected function fiveDigitNumbers($x): string
     {
         $fiveDigitNumberWithOf = [
             '4' => 'ကျပ်',
@@ -123,7 +123,7 @@ trait SarDataSetTrait
         return $fiveDigitNumberWithOf[$x] ?? "";
     }
 
-    protected function sarLak($x): string
+    protected function sixDigitNumber($x): string
     {
         $sixDigitNumber = [
             '5' => 'ကျပ်',
@@ -136,7 +136,7 @@ trait SarDataSetTrait
         return $sixDigitNumber[$x] ?? "";
     }
 
-    protected function sarLaks($x): string
+    protected function sixDigitNumbers($x): string
     {
         $sixDigitNumberWithOf = [
             '5' => 'ကျပ်',
@@ -149,7 +149,7 @@ trait SarDataSetTrait
         return $sixDigitNumberWithOf[$x] ?? "";
     }
 
-    protected function sarLakThan($x): string
+    protected function sevenDigitNumber($x): string
     {
         $sevenDigitNumber = [
             '6' => 'ကျပ်',
@@ -163,7 +163,7 @@ trait SarDataSetTrait
         return $sevenDigitNumber[$x] ?? "";
     }
 
-    protected function sarLakThans($x): string
+    protected function sevenDigitNumbers($x): string
     {
         $sevenDigitNumberWithOf = [
             '6' => 'ကျပ်',
@@ -177,7 +177,7 @@ trait SarDataSetTrait
         return $sevenDigitNumberWithOf[$x] ?? "";
     }
 
-    protected function sarTheinYar($x): string
+    protected function eightDigitNumber($x): string
     {
         $eightDigitNumber = [
             '7' => 'ကျပ်',
@@ -192,7 +192,7 @@ trait SarDataSetTrait
         return $eightDigitNumber[$x] ?? "";
     }
 
-    protected function sarTheinYars($x): string
+    protected function eightDigitNumbers($x): string
     {
         $eightDigitNumberWithOf = [
             '7' => 'ကျပ်',
@@ -207,7 +207,7 @@ trait SarDataSetTrait
         return $eightDigitNumberWithOf[$x] ?? "";
     }
 
-    protected function sarTheinHtaung($x): string
+    protected function nineDigitNumber($x): string
     {
         $nineDigitNumber = [
             '8' => 'ကျပ်',
@@ -223,7 +223,7 @@ trait SarDataSetTrait
         return $nineDigitNumber[$x] ?? "";
     }
 
-    protected function sarTheinHtaungs($x): string
+    protected function nineDigitNumbers($x): string
     {
         $nineDigitNumberWithOf = [
             '8' => 'ကျပ်',
@@ -239,7 +239,7 @@ trait SarDataSetTrait
         return $nineDigitNumberWithOf[$x] ?? "";
     }
 
-    protected function sarTheinThaung($x): string
+    protected function tenDigitNumber($x): string
     {
         $tenDigitNumber = [
             '9' => 'ကျပ်',
@@ -256,7 +256,7 @@ trait SarDataSetTrait
         return $tenDigitNumber[$x] ?? "";
     }
 
-    protected function sarTheinThaungs($x): string
+    protected function tenDigitNumbers($x): string
     {
         $tenDigitNumberWithOf = [
             '9' => 'ကျပ်',

@@ -3,18 +3,20 @@
 namespace MyanmarCurrency\MyanmarCurrency\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use MyanmarCurrency\MyanmarCurrency\MyanmarCurrency;
 use Orchestra\Testbench\TestCase as Orchestra;
 use MyanmarCurrency\MyanmarCurrency\MyanmarCurrencyServiceProvider;
 
 class TestCase extends Orchestra
 {
     protected $currency;
+
     protected function setUp(): void
     {
         parent::setUp();
-        $this->currency = new \MyanmarCurrency\MyanmarCurrency\MyanmarCurrency();
+        $this->currency = new MyanmarCurrency();
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'MyanmarCurrency\\MyanmarCurrency\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn(string $modelName) => 'MyanmarCurrency\\MyanmarCurrency\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 
@@ -23,15 +25,5 @@ class TestCase extends Orchestra
         return [
             MyanmarCurrencyServiceProvider::class,
         ];
-    }
-
-    public function getEnvironmentSetUp($app)
-    {
-        config()->set('database.default', 'testing');
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_myanmar-currency_table.php.stub';
-        $migration->up();
-        */
     }
 }

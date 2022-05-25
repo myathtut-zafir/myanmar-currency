@@ -34,9 +34,6 @@ return MyanmarCurrency::convertMyanmarText("1000");
 
 # returns 'ဆယ်သိန်း'
 return MyanmarCurrency::convertMyanmarText("1000000");
-
-# returns '၁'
-return MyanmarCurrency::engNumberToMyanmarNumber("1");
 ```
 
 ## Notes

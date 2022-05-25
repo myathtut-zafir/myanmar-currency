@@ -6,6 +6,8 @@ trait HelperTrait
 {
     use SarDataSetTrait;
 
+    protected string $completeSentence = "";
+
     //compose myanmar currency word. eg "သိန်း,သောင်း,etc"
     public function myanmarCurrencyWord($x, $amountNumber, $wordCount)
     {
@@ -34,13 +36,13 @@ trait HelperTrait
                 $currencySar = $this->myanmarCurrencyWord($x, $amountNumber, $wordCount);
 
                 if ($x == 0 && $prepend === true) {
-                    $this->condition .= "သိန်း" . $amountSecondDigit . $currencySar;
+                    $this->completeSentence .= "သိန်း" . $amountSecondDigit . $currencySar;
                 } else {
-                    $this->condition .= $amountSecondDigit . $currencySar;
+                    $this->completeSentence .= $amountSecondDigit . $currencySar;
                 }
             }
         }
-        return $this->condition;
+        return $this->completeSentence;
     }
 
     /**
@@ -49,10 +51,10 @@ trait HelperTrait
      */
     public function isPrepend(int $wordCount): bool
     {
-        $prepend = false;
+
         if ($wordCount >= 7) {
-            $prepend = true;
+            return true;
         }
-        return $prepend;
+        return false;
     }
 }
